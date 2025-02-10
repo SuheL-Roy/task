@@ -53,7 +53,7 @@
                             <img src="{{ asset('assets/images/authentication/img-auth-register.png') }}" alt="images"
                                 class="img-fluid mb-3">
                             <h4 class="f-w-500 mb-1">Register with your email</h4>
-                            <p class="mb-3">Already have an Account? <a href="../pages/login-v1.html"
+                            <p class="mb-3">Already have an Account? <a href="{{ route('login') }}"
                                     class="link-primary">Log in</a></p>
                         </div>
                         <form method="POST" action="{{ route('register') }}">

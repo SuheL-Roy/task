@@ -53,7 +53,7 @@
                             <img src="{{ asset('assets/images/authentication/img-auth-login.png') }}" alt="images"
                                 class="img-fluid mb-3">
                             <h4 class="f-w-500 mb-1">Login with your email</h4>
-                            <p class="mb-3">Don't have an Account? <a href="../pages/register-v1.html"
+                            <p class="mb-3">Don't have an Account? <a href="{{ route('register') }}"
                                     class="link-primary ms-1">Create Account</a></p>
                         </div>
 
@@ -61,7 +61,8 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="mb-3">
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="floatingInput" placeholder="Email Address" required autofocus>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" id="floatingInput" placeholder="Email Address" required autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -69,7 +70,8 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="floatingInput1" placeholder="Password">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    name="password" id="floatingInput1" placeholder="Password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -157,7 +159,6 @@
 
     <script>
         layout_change('light');
-
     </script>
 
 
@@ -165,20 +166,17 @@
 
     <script>
         layout_sidebar_change('light');
-
     </script>
 
 
 
     <script>
         change_box_container('false');
-
     </script>
 
 
     <script>
         layout_caption_change('true');
-
     </script>
 
 
@@ -186,19 +184,17 @@
 
     <script>
         layout_rtl_change('false');
-
     </script>
 
 
     <script>
         preset_change("preset-1");
-
     </script>
     <div class="offcanvas border-0 pct-offcanvas offcanvas-end" tabindex="-1" id="offcanvas_pc_layout">
         <div class="offcanvas-header justify-content-between">
             <h5 class="offcanvas-title">Settings</h5>
-            <button type="button" class="btn btn-icon btn-link-danger" data-bs-dismiss="offcanvas" aria-label="Close"><i
-                    class="ti ti-x"></i></button>
+            <button type="button" class="btn btn-icon btn-link-danger" data-bs-dismiss="offcanvas"
+                aria-label="Close"><i class="ti ti-x"></i></button>
         </div>
         <div class="pct-body customizer-body">
             <div class="offcanvas-body py-0">

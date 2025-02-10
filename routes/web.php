@@ -74,6 +74,7 @@ Route::prefix('merchant/')->middleware('auth')->name('merchant.')->group(functio
 Route::prefix('merchant/')->middleware('auth')->name('merchant.')->group(function () {
     Route::get('/product-list', [ProductController::class, 'MerchantProductList'])->name('product.list');
     Route::get('/shop-wise-category', [ProductController::class, 'shop_wise_category'])->name('shop_wise_category');
+    Route::get('/shop-wise-category-product', [ProductController::class, 'shop_wise_category_product'])->name('shop_wise_category_product');
     Route::post('/product-add', [ProductController::class, 'MerchantProductAdd'])->name('product.add');
     Route::get('/product-destroy-{id}', [ProductController::class, 'MerchantProductDestroy'])->name('product.destroy');
 });

@@ -40,6 +40,15 @@
           </a>
         </li>
 
+        <li class="pc-item">
+          <a href="{{ route('merchant.shop_wise_category_product') }}" class="pc-link">
+            <span class="pc-micon">
+              <i class="ph-duotone ph-shopping-cart"></i>
+            </span>
+            <span class="pc-mtext">Category Wise Product</span>
+          </a>
+        </li>
+
       </ul>
      
     </div>

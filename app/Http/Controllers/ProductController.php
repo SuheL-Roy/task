@@ -24,7 +24,7 @@ class ProductController extends Controller
             ->orderBy('products.created_at', 'desc')
             ->get();
 
-   
+
 
         return view('merchant.product.list', compact('categories', 'stores', 'products'));
     }
@@ -55,5 +55,24 @@ class ProductController extends Controller
         $shop_id = $request->id;
         $categories = Category::where('store_id', $shop_id)->get();
         return response()->json($categories);
+    }
+
+    public function shop_wise_category_product(Request $request)
+    {
+        $shop_page = Store::join('categories', 'stores.id', '=', 'categories.store_id')
+            ->join('products', 'categories.id', '=', 'products.category_id')
+            ->select(
+                'stores.id as store_id',
+                'stores.store_name as stores_name',  // Fixed column name
+                'categories.id as category_id',
+                'categories.category_name as categories_name', // Fixed column name
+                'products.id as product_id',
+                'products.product_name as products_name' // Fixed column name
+            )
+            ->orderBy('stores.id')
+            ->orderBy('categories.id')
+            ->get()
+            ->groupBy('store_id');
+        return view('all_shop_list_and_product', compact('shop_page'));    
     }
 }
