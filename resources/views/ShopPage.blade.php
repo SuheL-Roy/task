@@ -1,4 +1,4 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -973,76 +973,4 @@
 
         </div>
     </div>
-</body> --}}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shop Page</title>
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .btn {
-            cursor: pointer !important;
-        }
-    </style>
-</head>
-<body class="bg-light">
-
-    <!-- Navbar with Login/Register -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="#">Shop</a>
-            <div class="d-flex">
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/home') }}" class="btn btn-primary me-2">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-outline-primary me-2 cur">Login</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
-                        @endif
-                    @endauth
-                @endif
-            </div>
-        </div>
-    </nav>
-
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                @foreach($shop_page as $store)
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-header bg-primary text-white">
-                            <h3 class="mb-0">{{ $store->first()->stores_name }}</h3> {{-- Store Name --}}
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach($store->groupBy('category_id') as $category)
-                                    <div class="col-lg-4 col-md-6 mb-3">
-                                        <div class="border rounded p-3">
-                                            <h5 class="fw-semibold text-dark border-bottom pb-2">{{ $category->first()->categories_name }}</h5> {{-- Category Name --}}
-                                            
-                                            <ul class="list-group list-group-flush">
-                                                @foreach($category as $product)
-                                                    <li class="list-group-item">{{ $product->products_name }}</li> {{-- Product Name --}}
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap 5 JS Bundle (Popper included) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+</body> 

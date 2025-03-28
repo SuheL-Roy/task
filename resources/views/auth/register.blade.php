@@ -3,7 +3,7 @@
 <!-- [Head] start -->
 
 <head>
-    <title>Register | Light Able Admin & Dashboard Template</title>
+    <title>Register Manager</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
@@ -77,15 +77,7 @@
                                 </span>
                                 @enderror
                             </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control @error('shop_name') is-invalid @enderror" required
-                                    name="shop_name" placeholder="Shop Name">
-                                @error('shop_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
+                          
                             <div class="mb-3">
                                 <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
                                 @error('password')

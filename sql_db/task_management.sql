@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2025 at 07:31 AM
+-- Generation Time: Mar 28, 2025 at 04:56 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,30 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `task`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `categories`
---
-
-CREATE TABLE `categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `store_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id`, `category_name`, `store_id`, `created_at`, `updated_at`) VALUES
-(13, 'men', '4', '2025-02-09 06:18:15', NULL),
-(14, 'women', '4', '2025-02-09 06:18:24', NULL),
-(15, 'T-shirt', '5', '2025-02-09 06:18:56', NULL),
-(16, 'Pollo Shirt', '5', '2025-02-09 06:19:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -85,7 +61,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (6, '2025_02_05_053431_create_stores_table', 1),
 (7, '2025_02_05_055610_create_categories_table', 1),
-(8, '2025_02_05_061014_create_products_table', 1);
+(8, '2025_02_05_061014_create_products_table', 1),
+(9, '2025_03_27_062800_create_projects_table', 2),
+(10, '2025_03_27_062835_create_tasks_table', 2);
 
 -- --------------------------------------------------------
 
@@ -133,54 +111,56 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Table structure for table `projects`
 --
 
-CREATE TABLE `products` (
+CREATE TABLE `projects` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `store_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `merchant_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `project_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deadline` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `products`
+-- Dumping data for table `projects`
 --
 
-INSERT INTO `products` (`id`, `product_name`, `store_id`, `category_id`, `merchant_id`, `created_at`, `updated_at`) VALUES
-(8, 'kurthi', '2', '12', '2', '2025-02-08 22:09:55', NULL),
-(9, 'shirt', '1', '11', '2', '2025-02-08 22:10:06', NULL),
-(10, 'three piece', '2', '10', '2', '2025-02-08 22:10:28', NULL),
-(11, 'kurthi', '2', '10', '2', '2025-02-08 22:18:52', NULL),
-(12, 'Shoes', '4', '13', '2', '2025-02-09 06:19:33', NULL),
-(13, 'Khurthi', '4', '14', '2', '2025-02-09 06:19:45', NULL),
-(14, 'XL-Blue', '5', '15', '2', '2025-02-09 06:19:59', NULL),
-(15, 'L-Red', '5', '15', '2', '2025-02-09 06:20:13', NULL);
+INSERT INTO `projects` (`id`, `project_code`, `name`, `description`, `deadline`, `created_at`, `updated_at`) VALUES
+(3, 'PRJ-202503281', 'Project-1', 'Test Somthing', '2025-03-28', '2025-03-28 00:07:05', '2025-03-28 00:07:05'),
+(4, 'PRJ-202503282', 'Project-2', 'Test Somthing', '2025-03-28', '2025-03-28 00:07:19', '2025-03-28 00:07:19'),
+(6, 'PRJ-202503283', 'Project-3', 'sample description', '2025-03-28', '2025-03-28 00:07:56', '2025-03-28 00:07:56');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stores`
+-- Table structure for table `tasks`
 --
 
-CREATE TABLE `stores` (
+CREATE TABLE `tasks` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `store_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `merchant_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `task_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `task_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `assigned_to` int(11) DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `stores`
+-- Dumping data for table `tasks`
 --
 
-INSERT INTO `stores` (`id`, `store_name`, `merchant_id`, `created_at`, `updated_at`) VALUES
-(4, 'Regular Store', '2', '2025-02-09 06:17:32', NULL),
-(5, 'Urgent Store', '2', '2025-02-09 06:17:51', NULL);
+INSERT INTO `tasks` (`id`, `project_id`, `task_name`, `task_description`, `assigned_to`, `status`, `created_at`, `updated_at`) VALUES
+(25, 3, 'task-4', 'test task', 8, 'Done', '2025-03-28 04:45:22', '2025-03-28 05:00:15'),
+(26, 3, 'task-4', 'test task', 7, 'Pending', '2025-03-28 04:45:22', '2025-03-28 04:45:22'),
+(27, 3, 'task-4', 'test task', 6, 'Pending', '2025-03-28 04:45:22', '2025-03-28 04:45:22'),
+(28, 4, 'task-2', 'special description', 8, 'Working', '2025-03-28 04:58:55', '2025-03-28 05:00:09'),
+(29, 4, 'task-2', 'special description', 7, 'Pending', '2025-03-28 04:58:55', '2025-03-28 04:58:55'),
+(30, 6, 'task-1', 'test task', 6, 'Pending', '2025-03-28 05:09:35', '2025-03-28 05:09:35');
 
 -- --------------------------------------------------------
 
@@ -194,8 +174,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shop_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'merchant',
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Teammate',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -205,19 +184,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `shop_name`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', NULL, '$2y$12$vsCuL.HqxaoE45KZlVZBkOPt21xKy2Jeg9P8n3RRoTFYBs3wksdw6', 'admin shop', 'Admin', NULL, '2024-12-06 21:51:48', NULL),
-(2, 'Merchant', 'merchant@gmail.com', NULL, '$2y$12$stupCyVWntZSbxJrXJJJfOAjWMWPOcKYRJFU96f5YxnUudRloTGrK', 'merchant shop', 'Merchant', NULL, '2024-12-06 21:51:48', NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(5, 'Manager', 'manager@gmail.com', NULL, '$2y$12$RxqQzl.YEVuhhe.rI8lnYOJQ3OpxkTPN5abXomZuMwhX2kFW5Mt8e', 'Manager', NULL, '2025-03-27 23:17:49', '2025-03-27 23:17:49'),
+(6, 'teammates-1', 'teammates1@gmail.com', NULL, '$2y$12$z47gjbFfhChNDrYSXEF2YOolAuvv6vxH71Cj/CnJ3FuCmiHgT5WS.', 'Teammate', NULL, '2025-03-27 23:18:41', '2025-03-27 23:18:41'),
+(7, 'teammates-2', 'teammates2@gmail.com', NULL, '$2y$12$NHZeaIK44jjwr5hzABHVwuMauEmVKgPmSdr9nlgPBgbBGMKf7/03u', 'Teammate', NULL, '2025-03-27 23:19:53', '2025-03-27 23:19:53'),
+(8, 'teammates-3', 'teammates3@gmail.com', NULL, '$2y$12$MF9rraBb1SYxsb/WmcO7nerROKbqRPqcyKpouaq..GFngTiWIbu82', 'Teammate', NULL, '2025-03-27 23:20:25', '2025-03-27 23:20:25');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -253,15 +228,16 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `products`
+-- Indexes for table `projects`
 --
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `projects_project_code_unique` (`project_code`);
 
 --
--- Indexes for table `stores`
+-- Indexes for table `tasks`
 --
-ALTER TABLE `stores`
+ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -276,12 +252,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -291,7 +261,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -300,22 +270,22 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT for table `projects`
 --
-ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `projects`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `stores`
+-- AUTO_INCREMENT for table `tasks`
 --
-ALTER TABLE `stores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `tasks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -25,14 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-       
-        if (Auth::user()->role == 'Merchant') {
-            return redirect()->route('merchant.store.list');
-        }elseif (Auth::user()->role == 'Admin') {
-            return redirect()->route('admin.merchant.list');
+
+        if (Auth::user()->role == 'Manager') {
+            return redirect()->route('manager.create_teammates_list');
+        } elseif (Auth::user()->role == 'Teammate') {
+            return redirect()->route('manager.create_teammates_list');
         }
-        
     }
-
-
 }

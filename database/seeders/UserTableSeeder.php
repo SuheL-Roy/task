@@ -16,29 +16,14 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-
-            // Admin
-
             [
-                'name' =>'Admin',
-                'email' =>'admin@gmail.com',
-                'password' => Hash::make('111'),
-                'shop_name' =>'admin shop',
-                'role' =>'Admin',
-                'created_at' => '2024-12-07 03:51:48',
+                'name' => 'Manager',
+                'email' => 'manager@gmail.com',
+                'password' => Hash::make('12345678'),
+                'role' => 'Manager',
+                'created_at' => now(), // Using Laravel's helper function for the current timestamp
+                'updated_at' => now(), // Add updated_at to maintain consistency
             ],
-
-            // Merchant
-
-            [
-                'name' =>'Merchant',
-                'email' =>'merchant@gmail.com',
-                'password' => Hash::make('111'),
-                'shop_name' =>'merchant shop',
-                'role' =>'Merchant',
-                'created_at' => '2024-12-07 03:51:48',
-            ],
-
         ]);
     }
 }

@@ -3,7 +3,7 @@
 <!-- [Head] start -->
 
 <head>
-    <title>Login | Light Able Admin & Dashboard Template</title>
+    <title>Login</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
@@ -52,8 +52,8 @@
                         <div class="text-center">
                             <img src="{{ asset('assets/images/authentication/img-auth-login.png') }}" alt="images"
                                 class="img-fluid mb-3">
-                            <h4 class="f-w-500 mb-1">Login with your email</h4>
-                            <p class="mb-3">Don't have an Account? <a href="{{ route('register') }}"
+                            <h4 class="f-w-500 mb-1">Login for Managers and Teammates using your email.</h4>
+                            <p class="mb-3">Don't have an Manager Account? <a href="{{ route('register') }}"
                                     class="link-primary ms-1">Create Account</a></p>
                         </div>
 

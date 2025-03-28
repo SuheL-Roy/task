@@ -13,45 +13,49 @@
                     <label>Navigation</label>
                 </li>
 
-                @if (Auth::user()->role == 'Admin')
-                    <li class="pc-item">
-                        <a href="{{ route('admin.merchant.list') }}" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ph-duotone ph-projector-screen-chart"></i>
-                            </span>
-                            <span class="pc-mtext">Merchant</span>
-                        </a>
-                    </li>
+                @if (auth()->user()->role === 'Manager')
+                <li class="pc-item">
+                    <a href="{{ route('manager.create_teammates_list') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ph-duotone ph-projector-screen-chart"></i>
+                        </span>
+                        <span class="pc-mtext">Teammates List</span>
+                    </a>
+                </li>
+
+                <li class="pc-item">
+                    <a href="{{ route('Project.create_project_list') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ph-duotone ph-projector-screen-chart"></i>
+                        </span>
+                        <span class="pc-mtext">Project List</span>
+                    </a>
+                </li>
+                @endif
+              
+
+
+                <li class="pc-item">
+                    <a href="{{ route('task.create_task_assign_list') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ph-duotone ph-projector-screen-chart"></i>
+                        </span>
+                        <span class="pc-mtext">Task List</span>
+                    </a>
+                </li>
+                @if (auth()->user()->role === 'Manager')
+                <li class="pc-item">
+                    <a href="{{ route('Project.project_wise_task_filter') }}" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ph-duotone ph-projector-screen-chart"></i>
+                        </span>
+                        <span class="pc-mtext">Assign Project Filter</span>
+                    </a>
+                </li>
                 @endif
 
-                @if (Auth::user()->role == 'Merchant')
-                    <li class="pc-item">
-                        <a href="{{ route('merchant.store.list') }}" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ph-duotone ph-projector-screen-chart"></i>
-                            </span>
-                            <span class="pc-mtext">Store</span>
-                        </a>
-                    </li>
+              
 
-                    <li class="pc-item">
-                        <a href="{{ route('merchant.category.list') }}" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ph-duotone ph-identification-card"></i>
-                            </span>
-                            <span class="pc-mtext">Category</span>
-                        </a>
-                    </li>
-
-                    <li class="pc-item">
-                        <a href="{{ route('merchant.product.list') }}" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ph-duotone ph-shopping-cart"></i>
-                            </span>
-                            <span class="pc-mtext">Product</span>
-                        </a>
-                    </li>
-                @endif
             </ul>
 
         </div>
@@ -80,7 +84,7 @@
                             </a>
                             <div class="dropdown-menu">
                                 <ul>
-                                    
+
                                     <li>
                                         <a class="pc-user-links" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
